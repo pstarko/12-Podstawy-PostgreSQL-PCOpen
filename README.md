@@ -28,4 +28,4 @@ Przed szkoleniem zainstaluj:
 
 **Opcja B (git):**
 ```bash
-git clone https://github.com/TWOJ_LOGIN/NAZWA_REPO.git
+git clone https://github.com/pstarko/12-Podstawy-PostgreSQL-PCOpen.git
