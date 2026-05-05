@@ -28,9 +28,9 @@ Przed szkoleniem zainstaluj:
 
 **Opcja B (git):**
 
-Zainstaluj GIT - https://git-scm.com/install/windows
-
-Stwórz katalog na dysku i wejdź do niego z poziomu wiersza poleceń (CMD)
+- Zainstaluj GIT - https://git-scm.com/install/windows
+- Stwórz katalog na dysku i wejdź do niego z poziomu wiersza poleceń (CMD)
+- Uruchom poniższe polecenie
 
 
 ```bash
