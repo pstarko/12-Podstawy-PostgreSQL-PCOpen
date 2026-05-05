@@ -20,9 +20,7 @@ Przed szkoleniem zainstaluj:
 
 ---
 
-## 🚀 Jak zacząć
-
-### Krok 1 – Pobierz materiały
+## 🚀 Pobieranie materiałów
 
 **Opcja A (prosta):** Kliknij zielony przycisk `Code` → `Download ZIP` i rozpakuj na dysku.
 
