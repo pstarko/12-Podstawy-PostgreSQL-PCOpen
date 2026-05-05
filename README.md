@@ -27,5 +27,7 @@ Przed szkoleniem zainstaluj:
 **Opcja A (prosta):** Kliknij zielony przycisk `Code` → `Download ZIP` i rozpakuj na dysku.
 
 **Opcja B (git):**
+Zainstaluj GIT - https://git-scm.com/install/windows
+
 ```bash
 git clone https://github.com/pstarko/12-Podstawy-PostgreSQL-PCOpen.git
