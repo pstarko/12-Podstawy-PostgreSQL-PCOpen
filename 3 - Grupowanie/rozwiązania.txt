@@ -61,3 +61,22 @@ order by
 	else department_id
 	end
 
+/*
+6. Sprawdź, ilu mamy pracowników z literą O i R w nazwisku. Napisz zapytanie odporne
+na wielkość liter w tabeli (1 wiersz)
+*/
+
+
+select 
+	count(*) counter
+	from employees
+where
+	lower(last_name) like '%o%' and
+	lower(last_name) like '%r%'
+
+select 
+	count(*) counter
+	from employees
+where
+	upper(last_name) like '%O%' and
+	upper(last_name) like '%R%'
