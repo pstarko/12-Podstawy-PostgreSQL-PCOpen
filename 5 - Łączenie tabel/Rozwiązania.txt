@@ -34,7 +34,19 @@ select
 					 
 					 
 					 
-					 
+/*
+3. Pokaż poniższy raport nazwisk i nazw departamentów. 
+Uwzględnij departamenty, które nie zatrudniają pracowników. 
+Nie bierz pod uwagę zespołu Operations(121 wiersze)
+
+*/
+
+select
+	e.last_name,
+	d.department_name
+from employees e right join departments d on d.department_id = e.department_id
+where 
+	d.department_name <> 'Operations'					 
 					 
 					 
 					 
