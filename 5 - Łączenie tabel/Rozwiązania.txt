@@ -78,6 +78,32 @@ select
 where
 	left(l.state_province, 1) = 'T'
 
+/*
+6. Pokaż poniższe informacje o pracownikach, którzy są zatrudnieni na stanowisku
+Accountant oraz Purchasing Clerk, których roczny dochód przekracza 37200. Roczny
+dochód jest dwunastokrotnością wynagrodzenia podstawowego wraz z prowizją (5
+wierszy)
+*/
+
+select
+    last_name,
+    job_title,
+    12*(salary + (salary * coalesce(commission_pct,0))) year_income
+    from employees e join jobs j on e.job_id = j.job_id
+where j.job_title in ('Accountant','Purchasing Clerk')
+and 12*(salary + (salary * coalesce(commission_pct,0)))>37200
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
