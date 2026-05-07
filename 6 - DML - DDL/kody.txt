@@ -46,3 +46,50 @@ delete from druzyna where ID_DRUZYNY = 1
 delete from firma where id = 1
 
 
+create table t1 (id int)
+
+insert into t1 values (111);
+
+select * from t1;
+
+insert into t1 values (222);
+
+--1
+begin
+	
+	SELECT 'Some work is done';
+	SELECT 12 / 0;
+
+	SELECT 'try to do more work';
+
+commit
+rollback
+
+--2
+begin
+
+	insert into t1 values (444);
+	select * from t1;
+	insert into t1 values (222);
+commit
+
+
+--3
+BEGIN
+	select * from t1;
+	insert into t1 values (555);
+	savepoint a_555;
+	insert into t1 values (666);
+	savepoint a_666;
+	insert into t1 values (777);
+	savepoint a_777;
+	select * from t1;
+	rollback to savepoint a_555
+	select * from t1;
+	rollback to savepoint a_666
+commit;
+
+
+
+
+
