@@ -1,0 +1,48 @@
+--DDL - Data Definition Language
+--DML - Data Manipulation Language
+--DCL - Data Control Language
+
+CREATE TABLE DRUZYNA(
+   ID_DRUZYNY      INT PRIMARY KEY,
+   NAZWA           CHAR(50) NOT NULL
+);
+
+
+CREATE TABLE ZAWODNICY(
+   ID_ZAWODNIKA INT PRIMARY KEY,
+   NAZWISKO           CHAR(50) NOT NULL,
+   DRUZYNA_ID         INT      references DRUZYNA(ID_DRUZYNY)
+);
+
+insert into zawodnicy values (1, 'Alex', 1)  
+
+insert into druzyna values (1, 'FC Bat')
+
+--CHECK
+CREATE TABLE FIRMA(
+   ID INT PRIMARY KEY,
+   NAZWA           TEXT    NOT NULL,
+   PLACA         INT    CHECK(PLACA > 0)
+);
+
+insert into firma values (1, 'a', 600)
+
+
+ALTER TABLE ZAWODNICY 
+ADD COLUMN FIRMA_ID INT REFERENCES FIRMA(ID) ON DELETE SET NULL;
+
+select * from zawodnicy z 
+
+update zawodnicy set firma_id = 1 where id_zawodnika = 1
+
+select * from druzyna
+
+select * from zawodnicy
+
+select * from firma
+
+delete from druzyna where ID_DRUZYNY = 1
+
+delete from firma where id = 1
+
+
