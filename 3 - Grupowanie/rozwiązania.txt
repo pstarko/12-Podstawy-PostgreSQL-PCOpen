@@ -131,3 +131,56 @@ group by
 	department_id
 order by 
 	department_id desc
+
+/*
+11.
+Zbuduj zapytanie, które wyświetla średnie i maksymalne wynagrodzenie podstawowe 
+IT_PROG i SA_REP w poszczególnych zespołach. 
+Zaokrąglij pensję do liczb całkowitych. Posortuj wynik 
+zapytania według identyfikatorów działów i identyfikatora job_id (3 wiersze).
+*/
+
+
+select 
+	department_id,
+	job_id,
+	round(avg(salary)) srednia,
+	round(max(salary)) maksimum
+	from employees
+where
+	job_id in ('IT_PROG', 'SA_REP')
+group by
+	department_id,
+	job_id
+order by 
+	department_id, job_id
+
+	
+/*
+12. Utwórz zapytanie, które wyświetla liczbę pracowników zatrudnionych cały 2016 roku i 
+w drugiej połowie 2017 roku. Posortuj wyniki według roku zatrudnienia (15 wierszy).
+*/
+	
+	
+select
+	date_part('year', hire_Date),
+	date_part('month', hire_Date),
+	count(employee_id)
+	from employees
+where
+	date_part('year', hire_Date) = 2016
+	or (date_part('year', hire_Date) = 2017 and date_part('month', hire_Date) > 6)
+group by
+	date_part('year', hire_Date),
+	date_part('month', hire_Date)
+order by
+	date_part('year', hire_Date)
+	
+	
+	
+	
+	
+	
+	
+	
+	
