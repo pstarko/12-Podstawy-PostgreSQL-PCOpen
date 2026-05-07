@@ -1,0 +1,115 @@
+--kartezjan
+
+select 
+	*
+	from employees, departments
+order by 1
+
+
+--połączenie wewnętrzne z kartezjana
+select 
+	*
+	from employees e, departments d
+where
+	e.department_id = d.department_id
+	
+--połączenie wewnętrzne
+select 
+	*
+	from employees e join departments d on e.department_id = d.department_id
+	
+select 
+	*
+	from employees e inner join departments d on e.department_id = d.department_id
+	
+	
+	
+--połączenie wewnętrzne z kartezjana
+select 
+	*
+	from employees e, departments d, jobs j
+where
+	e.department_id = d.department_id
+	and e.job_id = j.job_id 
+	and e.salary > 5000
+	
+--połączenie wewnętrzne
+explain
+select 
+	*
+	from employees e join departments d on e.department_id = d.department_id
+					 join jobs j on e.job_id = j.job_id 
+where
+	e.salary > 5000
+	
+
+--połączenie zewnętrzne
+select 
+	*
+	from employees e left join departments d on e.department_id = d.department_id			
+	
+select 
+	*
+	from employees e right join departments d on e.department_id = d.department_id		
+		
+explain
+select 
+	*
+	from employees e full join departments d on e.department_id = d.department_id		
+		
+--anty join
+explain
+select 
+	e.last_name,
+	e.department_id,
+	d.department_id,
+	d.department_name 
+from employees e join departments d 	on e.department_id != d.department_id
+order by 1,3
+
+select
+	e.employee_id, 
+	e.last_name,
+	b.employee_id,
+	b.last_name
+from employees e join employees b on e.employee_id=b.manager_id
+
+--połączenia wierszowe
+
+select department_id from employees e 
+union
+Select department_id from departments d 
+
+select department_id from employees e 
+union all
+Select department_id from departments d 
+
+
+select department_id from employees e 
+intersect
+select department_id from departments d
+ 
+explain
+select department_id from departments d
+except
+select department_id from employees e 
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
