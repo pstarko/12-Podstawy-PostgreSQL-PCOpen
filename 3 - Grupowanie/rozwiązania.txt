@@ -97,3 +97,18 @@ group by
 	department_id
 having
 	sum(salary) * power(1.1, 10) > 52673
+
+/*
+8.
+Pokaż maksymalne i minimalne wynagrodzenie dla pracowników zatrudnionych po 2015r. 
+i posiadających szefa o identyfikatorze 100 lub 130 (1 wiersz)
+*/
+
+
+select 
+	max(salary),
+	min(salary)
+	from employees
+where
+	hire_date > '2015-12-31'
+	and manager_id in (100, 130)
