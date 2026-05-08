@@ -1,0 +1,27 @@
+create user dzik with password 'xxx333'; 
+
+
+--Sprawdzanie informacji o użytkownikach
+select * from pg_user;
+
+
+/*
+Co oznaczają poszczególne kolumny? 
+	"usename" (tak - nie useRname tylko usename)- nazwa użytkownika 
+	"usesysid" - id tego użytkownika (roli) 
+	"usecreatedb"- określa, czy dana rola może tworzyć bazy danych 
+	"usesuper" -określa, czy dana rola jest superużytkownikiem. Jeśli jest "true" w "usesuper", 
+					to niezaleznie od tego, że w kolumnie "usecreatedb" jest "false", rola ta może tworzyć bazy danych. 
+	_"userepl" -określa, czy dana rola może być użyta do replikacji 
+	"userbypassrls" -określa, czy rola omija wszystkie zasady zabezpieczeń na poziomie wierszy 
+						Więcej: https://www.postgresql.org/docs/current/ddl-rowsecurity.html). 
+	"passwd"- zawsze ukryte pod "********" hasło 
+	"validuntil"- termin, do którego dana rola będzie funkcjonować. Domyślnie nie jest zakładane żadne ograniczenie. 
+	"useconfig" - ustawienia na poziomie roli. Dla przykładu dla użytkownika "dzik" ustawiamy parametr "random_page_cost" na 1: 
+*/
+
+alter user dzik set random_page_cost=1; 
+
+GRANT SELECT ON TABLE public.employees TO dzik;
+
+https://www.postgresql.org/docs/current/sql-grant.html
