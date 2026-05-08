@@ -1,0 +1,65 @@
+/*
+1.
+Zbuduj zapytanie, które dla każdego pracownika pokaże jego miejsce zatrudnienia. 
+Następnie utwórz ranking pracowników ze względu na zarobki bez prowizji(106 wierszy)
+*/
+
+select 
+	e.last_name,
+	e.salary,
+	l.city,
+	rank() over (order by salary desc) rnk
+	from employees e join departments d on e.department_id=d.department_id
+					 join locations l on d.location_id=l.location_id
+
+
+/*
+2. Zmodyfikuj zapytanie z p. 1 w taki sposób, aby w zbiorze wynikowym pojawiła się 
+dodatkowa kolumna pokazująca ranking gęsty. 
+Usuń z rankingu gęstego pozycję 4,5,8 (103 wiersze)
+*/
+	
+select
+	*
+	from (
+			select 
+				e.last_name,
+				e.salary,
+				l.city,
+				rank() over (order by salary desc) rnk,
+				dense_rank() over (order by salary desc) drnk
+				from employees e join departments d on e.department_id=d.department_id
+								 join locations l on d.location_id=l.location_id ) t1
+where
+	t1.drnk not in (4, 5, 8)
+
+
+/*
+4. Wygeneruj poniższy raport z wykorzystaniem PERCENT RANK (11 wierszy).
+
+*/
+	
+select
+	t1.department_name,
+	t1.ilosc_pracownikow,
+	case
+		when t1.ilosc_pracownikow = 
+			(select max(t2.ilosc) 
+				from (select count(*) ilosc from employees group by department_id) t2)
+			then 'Departament z największą ilością pracowników'
+		when t1.ilosc_pracownikow = 
+			(select min(t2.ilosc) 
+				from (select count(*) ilosc from employees group by department_id) t2)
+			then 'Departament z najniższą ilością pracowników'
+		else t1.opis
+	end	
+	from (
+		select 
+		        d.department_name,
+				COUNT(*) ilosc_pracownikow,
+		        percent_rank() 
+		        	over (order by count(*) DESC)*100 || ' % departamentów z większą ilością pracowników' opis
+		        from employees e join departments d on e.department_id=d.department_id
+		group by d.department_name) t1
+		
+		
