@@ -73,7 +73,21 @@ where
 												
 												
 	
+/*
+5. Wyświetl informacje o pracownikach zarabiających więcej niż średnia pensja dla ich
+etatu(job_id) (43 wiersze)
+*/
 
+select
+	e.first_name ,
+	e.last_name ,
+	e.salary ,
+	j.job_title ,
+	(select avg(salary) from employees where job_id = e.job_id) avg_jobs_salary
+	from employees e join jobs j on e.job_id = j.job_id 
+where
+	salary > (select avg(salary) from employees
+				where job_id = e.job_id )
 
 
 
