@@ -90,4 +90,25 @@ where
 				where job_id = e.job_id )
 
 
+/*
+6. Wyświetl nazwiska poniższe dane pracowników związanych ze sprzedażą i mających
+innego szefa niż John Singh – wykorzystaj w zapytaniu strukturę „derrived column”
+(29 wierszy)
+*/
 
+select 
+	e.last_name,
+	e.email,
+	e.department_id,
+	(select first_name || ' ' || last_name from employees where employee_id = e.manager_id) Boss
+	from employees e 
+where 
+	job_id in 
+				(select 
+					job_id
+					from jobs j 
+					where lower(job_title) like '%sales%')					
+	and manager_id <> 
+				(select employee_id from employees						
+					where first_name = 'John' 
+					and last_name = 'Singh')
