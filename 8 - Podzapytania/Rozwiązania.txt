@@ -112,3 +112,20 @@ where
 				(select employee_id from employees						
 					where first_name = 'John' 
 					and last_name = 'Singh')
+/*
+7.
+Użyj skorelowanego podzapytania, aby wyświetlić informacje o pracowniku 
+niezatrudnionym w żadnym dziale 
+(użyj właściwej formy operatora EXISTS) (1 wiersz)
+*/
+
+explain
+select
+	first_name,
+	last_name,
+	department_id
+	from employees e
+where
+	not exists (select 1 from employees 
+					where department_id = e.department_id )
+					
